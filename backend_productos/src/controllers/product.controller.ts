@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import Product from "../models/product";
 
-export const getProducts = async (req: Request, res: Response): Promise<void> => {
+export const getProducts = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const products = await Product.findAll();
     res.json(products);
@@ -11,9 +14,20 @@ export const getProducts = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
-export const createProduct = async (req: Request, res: Response): Promise<void> => {
+export const createProduct = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { name, description, price } = req.body;
+
+    if (typeof price !== "number" || price > 99999999.99 || price < 0) {
+      res.status(400).json({
+        message: "El precio debe ser un número entre 0 y 99,999,999.99",
+      });
+      return;
+    }
+
     if (!name || !description || !price) {
       res.status(400).json({ message: "Todos los campos son obligatorios" });
       return;
@@ -27,7 +41,10 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
   }
 };
 
-export const deleteProduct = async (req: Request, res: Response): Promise<void> => {
+export const deleteProduct = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { id } = req.params;
     const product = await Product.findByPk(id);

@@ -1,0 +1,114 @@
+.product-list {
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
+  padding: 20px;
+}
+
+.product-list__title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.product-list__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.product-list__table th,
+.product-list__table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-list__table th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.product-list__table th.price,
+.product-list__table td.price {
+  text-align: right;
+}
+
+.product-list__table th.actions,
+.product-list__table td.actions {
+  text-align: center;
+}
+
+.product-list__table tr:nth-child(even) {
+  background: #f4f4f4;
+}
+
+.product-list__table tr:hover {
+  background: #e9ecef;
+}
+
+.product-list__delete-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.product-list__delete-btn:hover {
+  background: #c82333;
+}
+
+/* PAGINACIÓN */
+.product-list__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.product-list__page-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.product-list__page-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.product-list__page-btn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.product-list__page-text {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .product-list {
+    padding: 15px;
+  }
+
+  .product-list__table {
+    font-size: 0.9rem;
+  }
+
+  .product-list__table th,
+  .product-list__table td {
+    padding: 10px;
+  }
+
+  .product-list__delete-btn {
+    padding: 5px 10px;
+  }
+}
