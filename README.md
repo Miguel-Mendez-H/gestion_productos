@@ -1,1 +1,0 @@
-# gestions_productos
