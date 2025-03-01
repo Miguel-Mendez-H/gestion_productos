@@ -6,4 +6,9 @@ const router = Router();
 
 router.use("/products", productRoutes);
 
+//Api de presentación
+router.get("/", (req, res) => {
+  res.send("API de productos - hecha por LMMT");
+});
+
 export default router;

@@ -30,7 +30,7 @@ Instalacion dependencias
 
 - npm install
 
-Crea un archivo .env en la raíz con esta configuración:
+**Crea un archivo .env en la raíz con esta configuración:**
 
 - DB_HOST=localhost
 - DB_USER=postgres
@@ -39,15 +39,17 @@ Crea un archivo .env en la raíz con esta configuración:
 - DB_PORT=5432
 - PORT=3000
 
-Crea la base de datos
+## **Los siguientes pasos son en entorno local** ##
+
+## Crea la base de datos
 
 - npx ts-node src/config/initDatabase.ts
 
-Corre migraciones 
+## Corre migraciones
 
 - npx sequelize-cli db:migrate
 
-Corre el seeder (Opcional)
+## Corre el seeder (Opcional)
 
 - npx sequelize-cli db:seed:all
 
@@ -65,3 +67,19 @@ Una vez que el servidor está corriendo, puedes acceder a la documentación inte
 
  - http://localhost:3001/api-docs
 
+
+
+## En caso de usar docker
+**Crea un archivo .env en la raíz con esta configuración:**
+
+- DB_HOST=postgres
+- DB_USER=postgres
+- DB_PASSWORD=123456
+- DB_NAME=products_db
+- DB_PORT=5432
+- PORT=3002
+- NODE_ENV=development
+
+
+**Use docker-compose up --build**
+Las migraciones y seeder se corren en automatico por medio del docker compose 

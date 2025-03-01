@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-const sequelize = require("../config/database"); // Verificar que se importa correctamente
+const {sequelize} = require("../config/database"); // Verificar que se importa correctamente
 
 class Product extends Model {
   public id!: number;
@@ -26,6 +26,14 @@ Product.init(
     price: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
   },
   {

@@ -6,7 +6,7 @@ import { errorHandler } from "./middlewares/errorHandler";
 import swaggerUi from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
-const sequelize = require("./config/database");
+const {sequelize} = require("./config/database");
 
 dotenv.config();
 
