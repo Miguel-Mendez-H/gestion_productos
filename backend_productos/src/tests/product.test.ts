@@ -2,6 +2,7 @@ import request from "supertest";
 import app from "../index";
 
 describe("🔹 Pruebas sobre la API de productos", () => {
+  
   test("📌 GET /api/products debe devolver un array", async () => {
     const res = await request(app).get("/api/products");
     expect(res.status).toBe(200);

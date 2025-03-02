@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
 //Validaciones basicas para la creacion de un producto.
-
 export const validateProduct = (req: Request, res: Response, next: NextFunction): void => {
   const { name, description, price } = req.body;
 

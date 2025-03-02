@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
-const {sequelize} = require("../config/database"); // Verificar que se importa correctamente
+const { sequelize } = require("../config/database");
+
 
 class Product extends Model {
   public id!: number;
@@ -7,6 +8,7 @@ class Product extends Model {
   public description!: string;
   public price!: number;
 }
+
 
 Product.init(
   {
@@ -43,5 +45,6 @@ Product.init(
     timestamps: false,
   }
 );
+
 
 export default Product;

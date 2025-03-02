@@ -13,7 +13,6 @@ const sequelize = new Sequelize(
       logging: false,
     }
   );
-  
 
 const createDatabase = async () => {
   try {
