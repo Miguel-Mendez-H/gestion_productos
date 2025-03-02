@@ -10,6 +10,8 @@ COPY tsconfig.json ./
 COPY .babelrc ./
 COPY .sequelizerc ./
 
+# Copia el archivo de entorno correcto
+COPY .env.docker .env
 # Instalar dependencias
 RUN npm install
 
@@ -17,7 +19,7 @@ RUN npm install
 COPY src ./src
 
 # Exponer el puerto de la API
-EXPOSE 3002
+EXPOSE 3001
 
 # Ejecutar el contenedor con migraciones, seeders y el servidor
 CMD ["sh", "-c", "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npx nodemon src/index.ts"]

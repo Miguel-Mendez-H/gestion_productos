@@ -1,0 +1,30 @@
+# Usar una imagen de Node.js para construir la app
+FROM node:18-alpine AS build
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos de configuración e instalar dependencias
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copiar el resto del código fuente
+COPY . .
+
+# Copia el archivo de entorno correcto
+COPY .env.docker .env
+
+# Construir la aplicación
+RUN npm run build
+
+# Fase final: Servir la app con Nginx
+FROM nginx:alpine
+
+# Copiar la build de React a la carpeta pública de Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Exponer el puerto 80
+EXPOSE 80
+
+# Iniciar Nginx
+CMD ["nginx", "-g", "daemon off;"]
