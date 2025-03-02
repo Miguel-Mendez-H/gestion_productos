@@ -23,3 +23,5 @@ Para ejecutar el docker debe correr en la consolta
 - docker-compose up --build
 
 Se adicionan los .env para su testeo, tener presente cambiar los datos a los de su entorno de desarrollo
+se debe cambiar el password en el ".env" del api con los datos de su entorno
+(Soy consiente de que no se suben los .env, se suben por solicitud de requerimiento)
