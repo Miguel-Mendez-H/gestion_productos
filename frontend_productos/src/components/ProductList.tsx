@@ -14,6 +14,8 @@ const ProductList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.products);
   const [currentPage, setCurrentPage] = useState(1);
+  const [productosOrdenaos, setProductosOrdenados] = useState(products); //Seteo los productos
+  const [ordenadoAscendente, setOrdenadoAscendente] = useState(true);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -28,13 +30,23 @@ const ProductList: React.FC = () => {
     }).format(price);
   };
 
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+  const handleOrderProcuts = () => {
+      const sortedProducts = [...products].sort((a, b) => 
+      ordenadoAscendente ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
+      setOrdenadoAscendente(!ordenadoAscendente);
+      setProductosOrdenados(sortedProducts);
+  };
 
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   return (
+    <>
+    <div className="product-list__order">
+      <button
+        className="product-list__order-btn"
+        onClick={handleOrderProcuts}
+      >Ordenar</button>
+    </div>
     <div className="product-list">
       <h2 className="product-list__title">Lista de Productos</h2>
       <table className="product-list__table">
@@ -47,8 +59,8 @@ const ProductList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {currentProducts.length > 0 ? (
-            currentProducts.map((product) => (
+          {productosOrdenaos.length > 0 ? (
+            productosOrdenaos.map((product) => (
               <tr key={product.id} className="product-list__item">
                 <td>{product.name}</td>
                 <td>{product.description}</td>
@@ -97,6 +109,7 @@ const ProductList: React.FC = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
